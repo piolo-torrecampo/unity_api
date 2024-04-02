@@ -1,0 +1,8 @@
+{
+    "prompt": "Double the scale of the cube x axis",
+    "action": "scale",
+    "prefab": "Cube",
+    "axis": "decrease",
+    "value": "2"
+}
+

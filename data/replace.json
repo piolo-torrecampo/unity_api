@@ -1,0 +1,6 @@
+{
+    "prompt": "Replace the cube to Sphere",
+    "action": "replace",
+    "prefab": "Sphere",
+    "object_to_replace": "Cube"
+}

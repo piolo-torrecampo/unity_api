@@ -1,1 +1,7 @@
-
+{
+    "prompt": "Rotate the cube at 90 degrees in x axis",
+    "action": "rotate",
+    "prefab": "Cube",
+    "axis": "y",
+    "value": "45"
+}

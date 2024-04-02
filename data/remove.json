@@ -1,0 +1,6 @@
+{
+    "prompt": "Romeve cube",
+    "action": "remove",
+    "prefab": "Cube",
+    "value": "1"
+}
