@@ -1,0 +1,7 @@
+{
+    "prompt": "Move the cube to the right",
+    "action": "move",
+    "prefab": "Cube",
+    "direction": "bottom",
+    "value": "1"
+}

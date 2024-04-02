@@ -26,5 +26,9 @@ def replace():
     file = open (r"data\replace.json", "r")
     data = json.loads(file.read())
     return data
-    
-    
+
+@app.route("/move")
+def move():
+    file = open (r"data\move.json", "r")
+    data = json.loads(file.read())
+    return data

@@ -84,3 +84,23 @@ prompt | string | prompt of the user
 action | string | action performed by unity
 prefab | string | 3d object name under resources folder
 object_to_replace | string| name of old object
+
+## MOVE
+This tool allows to move a specific object in the scene. 
+```
+{
+    "prompt": "Move the cube to the right",
+    "action": "move",
+    "prefab": "Cube",
+    "direction": "bottom", // top, left, right, bottom, front, back
+    "value": "1" // units
+}
+```
+### Parameters
+Name | Data Type | Description
+| -- | -- | -- | 
+prompt | string | prompt of the user
+action | string | action performed by unity
+prefab | string | 3d object name under resources folder
+direction | string | direction of the next movement of the object
+object_to_replace | string| name of old object
