@@ -1,0 +1,10 @@
+{
+    "prompt": "Insert a Sphere at the left of the Cube",
+    "action": "insert",
+    "parameters": {
+        "reference_object": "Cube",
+        "prefab": "Sphere",
+        "direction": "front",
+        "value": "1"
+    }
+}

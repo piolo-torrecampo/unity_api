@@ -32,3 +32,9 @@ def move():
     file = open (r"data\move.json", "r")
     data = json.loads(file.read())
     return data
+
+@app.route("/insert")
+def insert():
+    file = open (r"data\insert.json", "r")
+    data = json.loads(file.read())
+    return data

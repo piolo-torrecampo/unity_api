@@ -1,0 +1,8 @@
+{
+    "prompt": "Duplicate the workbench to the right",
+    "action": "duplicate",
+    "prameters": {
+        "prefab": "workbench",
+        "axis": "right"
+    }
+}
