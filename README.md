@@ -10,12 +10,15 @@
 Scale is a the tool for making the object bigger.
 ```
 {
-    "prompt": "Double the scale of the cube x axis",
+    "prompt": "Double the scale of the workbench",
     "action": "scale",
-    "prefab": "Cube", 
-    "axis": "x", // x, y, z, all, increase, decrease
-    "value": "2" // no limit (can destroy the scene)
+    "parameters": {
+        "prefab": "workbench",
+        "axis": "all", "x", // x, y, z, all, increase, decrease
+        "value": "2" // no limit
+    }
 }
+
 ```
 ### Parameters
 Name | Data Type | Description
@@ -31,11 +34,13 @@ value | float | number of units to be applied for scaling
 This tool allows to rotate specific object in the scene.
 ```
 {
-    "prompt": "Rotate the cube at 90 degrees in x axis",
+    "prompt": "Rotate the workbench at 45 degrees in z axis",
     "action": "rotate",
-    "prefab": "Cube",
-    "axis": "x", // x, y, z
-    "value": "45" // -360 to 360
+    "parameters": {
+        "prefab": "workbench",
+        "axis": "z", // x, y, z
+        "value": "45" // -360 to 360
+    }
 }
 ```
 ### Parameters
@@ -52,10 +57,12 @@ value | float | degrees of rotation
 This tool allows to remove a specific object in the scene.
 ```
 {
-    "prompt": "Remove 5 cube",
+    "prompt": "Romeve workbench",
     "action": "remove",
-    "prefab": "Cube",
-    "value": "5" // can be any number
+    "parameters": {
+        "prefab": "workbench",
+        "value": "1" // can be any number
+    }  
 }
 ```
 ### Parameters
@@ -71,10 +78,12 @@ value | float | quantity of the 3d object/s that will be remove
 This tool allows to replace a specific object in the scene and put another object in the same place.
 ```
 {
-    "prompt": "Replace the cube to Sphere",
+    "prompt": "Replace the cube to workbench",
     "action": "replace",
-    "prefab": "Sphere",
-    "object_to_replace": "Cube" 
+    "parameters": {
+        "prefab": "Cube",
+        "object_to_replace": "workbench"
+    }   
 }
 ```
 ### Parameters
@@ -89,11 +98,13 @@ object_to_replace | string| name of old object
 This tool allows to move a specific object in the scene. 
 ```
 {
-    "prompt": "Move the cube to the right",
+    "prompt": "Move the workbench to the right",
     "action": "move",
-    "prefab": "Cube",
-    "direction": "bottom", // top, left, right, bottom, front, back
-    "value": "1" // units
+    "parameters": {
+        "prefab": "workbench",
+        "direction": "right", // top, left, right, bottom, front, back
+        "value": "1"
+    }
 }
 ```
 ### Parameters

@@ -1,6 +1,8 @@
 {
-    "prompt": "Replace the cube to Sphere",
+    "prompt": "Replace the cube to workbench",
     "action": "replace",
-    "prefab": "Sphere",
-    "object_to_replace": "Cube"
+    "parameters": {
+        "prefab": "Cube",
+        "object_to_replace": "workbench"
+    }   
 }

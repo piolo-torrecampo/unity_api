@@ -1,7 +1,9 @@
 {
-    "prompt": "Move the cube to the right",
+    "prompt": "Move the workbench to the right",
     "action": "move",
-    "prefab": "Cube",
-    "direction": "bottom",
-    "value": "1"
+    "parameters": {
+        "prefab": "workbench",
+        "direction": "right",
+        "value": "1"
+    }
 }

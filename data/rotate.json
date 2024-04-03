@@ -1,7 +1,9 @@
 {
-    "prompt": "Rotate the cube at 90 degrees in x axis",
+    "prompt": "Rotate the workbench at 45 degrees in z axis",
     "action": "rotate",
-    "prefab": "Cube",
-    "axis": "y",
-    "value": "45"
+    "parameters": {
+        "prefab": "workbench",
+        "axis": "z",
+        "value": "45"
+    }
 }

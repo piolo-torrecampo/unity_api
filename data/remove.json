@@ -1,6 +1,8 @@
 {
-    "prompt": "Romeve cube",
+    "prompt": "Romeve workbench",
     "action": "remove",
-    "prefab": "Cube",
-    "value": "1"
+    "parameters": {
+        "prefab": "workbench",
+        "value": "1"
+    }  
 }

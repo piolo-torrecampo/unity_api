@@ -1,8 +1,10 @@
 {
-    "prompt": "Double the scale of the cube x axis",
+    "prompt": "Double the scale of the workbench",
     "action": "scale",
-    "prefab": "Cube",
-    "axis": "decrease",
-    "value": "2"
+    "parameters": {
+        "prefab": "workbench",
+        "axis": "all",
+        "value": "2"
+    }
 }
 
