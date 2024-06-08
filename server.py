@@ -59,15 +59,9 @@ def set_insert():
         200:
             description: Returns the output of the LLM
     """
-     
-    action = "insert"
-    referenceObject = request.json.get("reference_object", "")
-    prefab = request.json.get("prefab", "")
-    direction = request.json.get("direction", "")
-    value = request.json.get("value", "")
 
     insertObject = {
-        "action": action,
+        "action": "insert",
         "parameters": {
             "reference_object": "",
             "prefab": "",
@@ -75,6 +69,11 @@ def set_insert():
             "value": ""
         }
     }
+    
+    referenceObject = request.json.get("reference_object", "")
+    prefab = request.json.get("prefab", "")
+    direction = request.json.get("direction", "")
+    value = request.json.get("value", "")
 
     if len(prefab) > 0:
         insertObject['parameters']['reference_object'] = referenceObject
@@ -417,6 +416,12 @@ def set_rotate():
             currentInstruction['parameters'] = rotateObject['parameters']
             return jsonify(rotateObject), 200
 
+@app.route("/reset") 
+def reset():
+    currentInstruction['action'] = ""
+    currentInstruction['parameters'] = ""
+    return jsonify(currentInstruction), 200
+
 @app.route("/instruction")
 def get_instruction():
     """
@@ -429,4 +434,4 @@ def get_instruction():
     return jsonify(currentInstruction)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=9001)
+    app.run(debug=True, port=8080)
