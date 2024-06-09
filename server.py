@@ -16,6 +16,10 @@ errorResponse = {
     "message": ""
 }
 
+responseFromUnity = {
+    "message": ""
+}
+
 """
 actions = ['insert', 'duplicate', 'delete', 'move', 'replace', 'rotate', 'scale']
 insert_params = ['reference_object', 'prefab', 'direction', 'value']
@@ -28,6 +32,7 @@ scale_params = ['prefab', 'axis', 'value']
 """
 
 axisList = ['x', 'y', 'z', 'default', 'all'] # default and all are the same | move, insert
+scaleList = ['x', 'y', 'z', 'multiply', 'increase', 'decrease']
 directionsList = ["left", "right", "front", "back", "top", "bottom", "default"] #rotate, scale
 
 @app.route("/set/insert", methods=["POST"])
@@ -77,6 +82,8 @@ def set_insert():
 
     if len(prefab) > 0:
         insertObject['parameters']['reference_object'] = referenceObject
+    else:
+        insertObject['parameters']['reference_object'] = ""
 
     if len(prefab) > 0:
         insertObject['parameters']['prefab'] = prefab
@@ -89,8 +96,9 @@ def set_insert():
 
     paramsWithoutValue = []
     for key, item in insertObject["parameters"].items():
-        if len(item) == 0:
-            paramsWithoutValue.append(key)
+        if(key != "reference_object"):
+            if len(item) == 0:
+                paramsWithoutValue.append(key)
 
     if paramsWithoutValue:
         return jsonify(f"Parameter/s are required: {paramsWithoutValue}"), 400
@@ -103,7 +111,60 @@ def set_insert():
             currentInstruction['action'] = insertObject['action']
             currentInstruction['parameters'] = insertObject['parameters']
             return jsonify(insertObject), 200
+
+@app.route("/set/snap", methods=["POST"])
+def set_snap(): 
+    """
+    SNAP OBJECT
+    ---
+    parameters:
+        - name: snap object
+          in: "body"
+          description: "snap object inside of Unity"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              snap_point: 
+                type: "string"
+                description: "snap point object for placement of the new prefab"
+              prefab:
+                type: "string"
+                description: "object that will be deployed in Unity"
+    responses:
+        200:
+            description: Returns the output of the LLM
+    """
+
+    snapObject = {
+        "action": "snap",
+        "parameters": {
+            "snap_point": "",
+            "prefab": ""
+        }
+    }
     
+    snapPoint = request.json.get("snap_point", "")
+    prefab = request.json.get("prefab", "")
+
+    if len(prefab) > 0:
+        snapObject['parameters']['snap_point'] = snapPoint
+
+    if len(prefab) > 0:
+        snapObject['parameters']['prefab'] = prefab
+
+    paramsWithoutValue = []
+    for key, item in snapObject["parameters"].items():
+        if len(item) == 0:
+            paramsWithoutValue.append(key)
+
+    if paramsWithoutValue:
+        return jsonify(f"Parameter/s are required: {paramsWithoutValue}"), 400
+    else:
+        currentInstruction['action'] = snapObject['action']
+        currentInstruction['parameters'] = snapObject['parameters']
+        return jsonify(snapObject), 200
+
 @app.route("/set/move", methods=["POST"])
 def set_move(): 
     """
@@ -340,7 +401,7 @@ def set_scale():
     if paramsWithoutValue:
         return jsonify(f"Parameter/s are required: {paramsWithoutValue}"), 400
     else:
-        if axis.lower() not in axisList:
+        if axis.lower() not in scaleList:
             return jsonify(f"Axis is invalid. {axisList}"), 400
         elif value.isdigit() == False:
              return jsonify(f"Value should be a number."), 400
@@ -421,6 +482,16 @@ def reset():
     currentInstruction['action'] = ""
     currentInstruction['parameters'] = ""
     return jsonify(currentInstruction), 200
+
+@app.route("/set/response", methods=["POST"]) 
+def set_reponse():
+    message = request.json.get('message', "")
+    responseFromUnity['message'] = message
+    return jsonify(responseFromUnity), 200
+
+@app.route("/response") 
+def get_reponse():
+    return jsonify(responseFromUnity), 200
 
 @app.route("/instruction")
 def get_instruction():
